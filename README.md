@@ -1,8 +1,5 @@
 # 🚀 End-to-End DevSecOps Kubernetes Project 🌐
 
-[![LinkedIn](https://img.shields.io/badge/Connect%20with%20me%20on-LinkedIn-blue.svg)](https://www.linkedin.com/in/aman-devops/)
-[![GitHub](https://img.shields.io/github/stars/AmanPathak-DevOps.svg?style=social)](https://github.com/AmanPathak-DevOps)
-![DevSecOps](https://img.shields.io/badge/DevSecOps-Mastery-brightgreen)
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-Orchestration-blueviolet)
 ![Jenkins](https://img.shields.io/badge/Jenkins-Automation-orange)
 ![ArgoCD](https://img.shields.io/badge/ArgoCD-Continuous%20Delivery-blue)
@@ -12,43 +9,40 @@
 
 ![Infrastructure Diagram](assets/Infra.gif)
 
-Welcome to an immersive DevSecOps learning experience! This project guides you through deploying a Tetris game on AWS EKS while mastering the art of DevSecOps.
+## 📌 Project Overview
+This project demonstrates a complete, automated **DevSecOps** and **GitOps** pipeline for deploying a containerized Tetris application on **AWS EKS**. It showcases the integration of Infrastructure as Code (IaC), continuous integration, security scanning, and continuous delivery.
 
 ## Directories 📂
 
-1. **EKS-TF:** Explore Terraform scripts for deploying EKS clusters on AWS.
+1. **EKS-TF:** Terraform scripts for deploying EKS clusters on AWS.
 2. **Jenkins-Pipeline-Code:** Jenkins pipeline code for automated CI/CD.
 3. **Jenkins-Server-TF:** Terraform scripts for provisioning Jenkins servers on AWS EC2.
 4. **Manifest-file:** Kubernetes manifest files for Tetris application deployment.
 5. **Tetris-V1:** Initial version of the Tetris game application.
 6. **Tetris-V2:** Enhanced version of the Tetris game application.
 
-## Getting Started 🚀
+## 🏗️ Architecture & CI/CD Pipeline Workflow
+The deployment lifecycle is fully automated with the following stages:
+1. **Infrastructure Provisioning:** AWS EKS cluster and Jenkins EC2 instances are provisioned automatically using **Terraform**.
+2. **Continuous Integration (CI):** **Jenkins** fetches the source code and triggers the build pipeline.
+3. **Code Quality & Security (DevSecOps):** - **SonarQube** performs Static Application Security Testing (SAST) and code quality checks.
+   - **OWASP Dependency-Check** scans for vulnerabilities in third-party libraries.
+   - **Trivy** scans the Docker file and the final Docker image for critical vulnerabilities.
+4. **Containerization:** The application is built into a **Docker** image and pushed to Docker Hub.
+5. **Continuous Deployment (CD) & GitOps:** **ArgoCD** monitors the Kubernetes manifest files in the repository and automatically syncs the desired state to the **AWS EKS** cluster.
 
-1. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/AmanPathak-DevOps/End-to-End-Kubernetes-DevSecOps-Tetris-Project.git
-2. **Explore the Directories:**
-   Navigate into each directory to find detailed scripts, pipelines, and configurations.
+## 🛠️ Tech Stack & Tools
+- **Cloud Provider:** AWS (EC2, EKS)
+- **Infrastructure as Code (IaC):** Terraform
+- **CI/CD & GitOps:** Jenkins, ArgoCD
+- **Containerization & Orchestration:** Docker, Kubernetes
+- **Security & Quality:** SonarQube, Trivy, OWASP Dependency-Check
 
-3. **Follow the Blog:**
-   Implementation details and insights are documented in the associated [blog post](https://amanpathakdevops.medium.com/devsecops-mastery-a-step-by-step-guide-to-deploying-tetris-on-aws-eks-with-jenkins-and-argocd-3adcf21b3120).
-
-## Tools Explored 🛠️
-1. **Jenkins:** Automated CI/CD pipelines
-2. **ArgoCD:** Continuous deployment to Kubernetes
-3. **Kubernetes:** Orchestration for containerized applications
-4. **Trivy:** Container vulnerability scanner
-5. **OWASP Dependency-Check:** Ensuring secure dependencies
-6. **Docker:** Containerized application deployment
-7. **SonarQube:** Unveiling code quality insights
-8. **Terraform:** Infrastructure as Code for AWS EKS
-
-## Blog Implementation 📝
-   To implement this project, follow the step-by-step guide in our detailed [blog post](https://amanpathakdevops.medium.com/devsecops-mastery-a-step-by-step-guide-to-deploying-tetris-on-aws-eks-with-jenkins-and-argocd-3adcf21b3120). Learn how each tool plays a crucial role in achieving DevSecOps excellence.
-
-## Acknowledgments 🙌
-   Special thanks to the open-source community and the contributors who make learning and collaboration an incredible journey.
+## 🌟 Key Features
+- **Zero-Touch Provisioning:** Infrastructure setup is completely code-driven using Terraform modules.
+- **Shift-Left Security:** Integrated vulnerability scanning at multiple stages (Code, Dependencies, Container).
+- **GitOps Methodology:** Utilized ArgoCD for declarative continuous delivery, ensuring the cluster state always matches the Git repository.
+- **Version Control Strategy:** Maintained and deployed multiple application versions (`Tetris-V1` and `Tetris-V2`) smoothly.
 
 ## License 📄
    This project is licensed under the Apache-2.0 license see the [LICENSE](http://www.apache.org/licenses/) file for details.
