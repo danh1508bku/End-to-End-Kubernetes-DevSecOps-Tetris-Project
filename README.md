@@ -44,5 +44,31 @@ The deployment lifecycle is fully automated with the following stages:
 - **GitOps Methodology:** Utilized ArgoCD for declarative continuous delivery, ensuring the cluster state always matches the Git repository.
 - **Version Control Strategy:** Maintained and deployed multiple application versions (`Tetris-V1` and `Tetris-V2`) smoothly.
 
+
+## 📸 Project Execution & Visual Workflow
+
+Here is the visual representation of the DevSecOps pipeline execution:
+
+### 1. Continuous Integration with Jenkins
+![Jenkins Pipeline](assets/jenkins-pipeline.png)
+
+### 2. Static Application Security Testing (SAST)
+![SonarQube Report](assets/sonarqube-dashboard.png)
+
+### 3. Software Composition Analysis (SCA)
+![Dependency Check Report](assets/dependency-check.png)
+
+### 4. Container Vulnerability Scanning
+![Trivy Scan](assets/trivy-scan.png)
+
+### 5. Continuous Deployment with ArgoCD (GitOps)
+![ArgoCD Sync](assets/argocd-dashboard.png)
+
+### 6. Final Application Running on AWS EKS
+![Tetris Game](assets/tetris-running.png)
+
+### 7. Successful Application Update (V1 to V2 Validation)
+![Tetris Game V2](assets/tetris-running-v2.png)
+
 ## License 📄
    This project is licensed under the Apache-2.0 license see the [LICENSE](http://www.apache.org/licenses/) file for details.
