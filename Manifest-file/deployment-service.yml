@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: tetris
-        image: danh1508bku/tetrisv1:8
+        image: danh1508bku/tetrisv1:1
         ports:
         - containerPort: 3000
 ---
