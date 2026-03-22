@@ -1,6 +1,6 @@
 properties([
     parameters([
-        string(defaultValue: 'variables.tfvars', description: 'Specify the file name', name: 'File-Name'),
+        string(defaultValue: 'terraform.tfvars', description: 'Specify the file name', name: 'File-Name'),
         choice(choices: ['plan', 'apply', 'destroy'], description: 'Select Terraform action', name: 'Terraform-Action')
     ])
 ])
@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Initializing Terraform') {
             steps {
-                withAWS(credentials: 'aws-key', region: 'us-east-1') {
+                withAWS(credentials: 'aws-key', region: 'ap-southeast-1') {
                 dir('EKS-TF') {
                     script {
                         sh 'terraform init'
@@ -26,7 +26,7 @@ pipeline {
         }
         stage('Validate Terraform Code') {
             steps {
-                withAWS(credentials: 'aws-key', region: 'us-east-1') {
+                withAWS(credentials: 'aws-key', region: 'ap-southeast-1') {
                 dir('EKS-TF') {
                     script {
                         sh 'terraform validate'
@@ -37,10 +37,10 @@ pipeline {
         }
         stage('Terraform Plan') {
             steps {
-                withAWS(credentials: 'aws-key', region: 'us-east-1') {
+                withAWS(credentials: 'aws-key', region: 'ap-southeast-1') {
                 dir('EKS-TF') {
                     script {
-                        sh "terraform plan -var-file=${params.'File-Name'}"
+                        sh 'terraform plan'
                     }
                 }
                 }
@@ -48,17 +48,17 @@ pipeline {
         }
         stage('Terraform Action') {
             steps {
-                withAWS(credentials: 'aws-key', region: 'us-east-1') {
+                withAWS(credentials: 'aws-key', region: 'ap-southeast-1') {
                 script {
                     echo "${params.'Terraform-Action'}"
                     dir('EKS-TF') {
                         script {
                             if (params.'Terraform-Action' == 'plan') {
-                                sh "terraform plan -var-file=${params.'File-Name'}"
+                                sh "terraform plan"
                             } else if (params.'Terraform-Action' == 'apply') {
-                                sh "terraform apply -auto-approve -var-file=${params.'File-Name'}"
+                                sh "terraform apply -auto-approve"
                             } else if (params.'Terraform-Action' == 'destroy') {
-                                sh "terraform destroy -auto-approve -var-file=${params.'File-Name'}"
+                                sh "terraform destroy -auto-approve"
                             } else {
                                 error "Invalid value for Terraform-Action: ${params.'Terraform-Action'}"
                             }
